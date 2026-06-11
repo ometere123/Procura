@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --rail: #090B0A;
+  --amber: #FFB000;
+  --vermilion: #FF4F2E;
+  --lime: #B6FF3B;
+  --cyan: #00D1C1;
+  --cobalt: #2454FF;
+  --concrete: #E7E1D4;
+  --paper: #F8F4EA;
+  --graphite: #2B3032;
+  --signalwhite: #F8FFF4;
+  --violet: #7B4DFF;
+  --track: #6F7772;
+}
+
+html, body { background: var(--rail); color: var(--signalwhite); }
+
+body {
+  font-family: var(--font-atkinson), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-head { font-family: var(--font-bebas), sans-serif; letter-spacing: 0.02em; }
+.font-mono-data { font-family: var(--font-share), monospace; }
+
+/* Signal lever button */
+.signal-lever {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.85rem 1.4rem 0.85rem 1.7rem;
+  background: var(--amber);
+  color: var(--rail);
+  font-family: var(--font-bebas), sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 2px solid var(--rail);
+  box-shadow: 4px 4px 0 var(--rail), 4px 4px 0 1px var(--amber);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+  cursor: pointer;
+}
+.signal-lever::before {
+  content: "";
+  position: absolute;
+  left: -10px; top: 50%;
+  width: 14px; height: 14px;
+  background: var(--rail);
+  border: 2px solid var(--amber);
+  transform: translateY(-50%) rotate(45deg);
+}
+.signal-lever:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--rail); }
+.signal-lever:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.signal-lever.secondary {
+  background: transparent;
+  color: var(--amber);
+  border-color: var(--amber);
+  box-shadow: none;
+}
+.signal-lever.secondary::before { background: var(--amber); }
+
+.signal-lever.review {
+  background: var(--rail);
+  color: var(--lime);
+  border: 2px solid var(--lime);
+  box-shadow: 4px 4px 0 var(--lime);
+}
+.signal-lever.review::before { background: var(--lime); border-color: var(--rail); }
+
+.signal-lever.clarify {
+  background: transparent;
+  color: var(--cobalt);
+  border: 2px solid var(--cobalt);
+  box-shadow: none;
+}
+.signal-lever.clarify::before { background: var(--cobalt); }
+
+.signal-lever.appeal {
+  background: transparent;
+  color: var(--vermilion);
+  border: 2px solid var(--vermilion);
+  box-shadow: none;
+}
+.signal-lever.appeal::before { background: var(--vermilion); }
+
+/* Rail panel */
+.rail-panel {
+  background: var(--graphite);
+  border: 1px solid #3a4144;
+  border-left: 4px solid var(--amber);
+  padding: 1.25rem;
+}
+
+.tender-paper {
+  background: var(--paper);
+  color: var(--rail);
+  border: 1px solid #c8bfa9;
+  padding: 1.25rem;
+}
+
+.gate-card {
+  background: #11161a;
+  border: 1px solid #1f262b;
+  border-left: 3px solid var(--cyan);
+  padding: 1rem;
+}
+
+.signal-stamp {
+  display: inline-block;
+  padding: 0.25rem 0.55rem;
+  font-family: var(--font-share), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  border: 1px solid currentColor;
+  background: rgba(0,0,0,0.3);
+}
+
+.mono-num {
+  font-family: var(--font-share), monospace;
+  font-size: 2.4rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.track-line {
+  background-image: repeating-linear-gradient(90deg, var(--track) 0 8px, transparent 8px 18px);
+  height: 2px;
+  width: 100%;
+}
+
+.glow-amber { box-shadow: 0 0 24px rgba(255,176,0,0.25); }
+.glow-lime { box-shadow: 0 0 24px rgba(182,255,59,0.25); }
+.glow-cyan { box-shadow: 0 0 24px rgba(0,209,193,0.25); }
+
+input, textarea, select {
+  background: var(--paper);
+  color: var(--rail);
+  border: 1px solid #c8bfa9;
+  padding: 0.55rem 0.75rem;
+  font-family: var(--font-atkinson), sans-serif;
+  width: 100%;
+}
+input:focus, textarea:focus, select:focus {
+  outline: 2px solid var(--amber);
+  outline-offset: 0;
+}
+
+label {
+  display: block;
+  font-family: var(--font-share), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--concrete);
+  margin-bottom: 0.35rem;
+}
+
+/* On tender-paper (light) backgrounds, labels and text must be dark */
+.tender-paper label,
+.tender-paper .label-on-paper {
+  color: var(--graphite);
+}
+.tender-paper,
+.tender-paper p,
+.tender-paper li,
+.tender-paper pre,
+.tender-paper textarea,
+.tender-paper input,
+.tender-paper select {
+  color: var(--rail);
+}
+.tender-paper input::placeholder,
+.tender-paper textarea::placeholder {
+  color: #8a8377;
+}
+.tender-paper .font-mono-data { color: var(--graphite); }
